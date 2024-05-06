@@ -48,9 +48,9 @@ const getEntryById = async (req, res) => {
 };
 
 const putEntry = async (req, res) => {
-  if (!req.body.title || !req.body.content || !req.body.author) {
+  if (!req.body.title && !req.body.content && !req.body.author) {
     res.status(400);
-    res.json({error: 'missing required field'});
+    res.json({error: 'missing any fields to update'});
     return;
   } else if (fetchEntryById(req.params.id).error) {
     res.status(404);
@@ -66,7 +66,7 @@ const putEntry = async (req, res) => {
       return;
     }
     res.status(200);
-    res.json({id});
+    res.json({message: 'entry updated', id: id});
   }
 };
 
@@ -84,7 +84,7 @@ const deleteEntry = async (req, res) => {
       return;
     }
     res.status(204);
-    res.json();
+    res.json({message: 'entry deleted', id: id});
   }
 };
 
