@@ -20,7 +20,7 @@ const postEntry = async (req, res) => {
       return;
     }
     res.status(201);
-    res.json({message: 'entry created', id: result.insertId});
+    res.json({message: 'entry created', id: result});
   }
 };
 
